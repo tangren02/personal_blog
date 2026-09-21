@@ -9,7 +9,7 @@
 </section>
 {% if track.entries %}
 <section class="section">
-  <div class="section-heading"><div><span class="kicker">{{ track.section_kicker or (track.tag ~ " ENTRIES") }}</span><h2>{{ track.section_heading or "内容导航" }}</h2></div><p>{{ track.section_description or "从这里进入具体内容条目。" }}</p></div>
+  <div class="section-heading"><div><span class="kicker">{{ track.get("section_kicker") or (track.tag ~ " ENTRIES") }}</span><h2>{{ track.get("section_heading") or "内容导航" }}</h2></div><p>{{ track.get("section_description") or "从这里进入具体内容条目。" }}</p></div>
   <div class="entry-list">{% for entry in track.entries %}{% include "partials/entry_card.html" %}{% endfor %}</div>
 </section>
 {% else %}{% include "partials/empty_state.html" %}{% endif %}

@@ -12,13 +12,18 @@ class GeneratorTests(unittest.TestCase):
             output = Path(directory) / "dist"
             with patch.object(build, "DIST_DIR", output):
                 result = build.build_site()
-            self.assertEqual(result.entry_count, 1)
+            self.assertEqual(result.entry_count, 2)
             self.assertTrue((output / "index.html").exists())
             self.assertTrue((output / "knowledge/projects/index.html").exists())
+            self.assertTrue((output / "knowledge/programming-knowledge/index.html").exists())
             self.assertTrue((output / "projects/hstring/index.html").exists())
+            self.assertTrue((output / "knowledge/programming-jargon/index.html").exists())
             project_index = (output / "knowledge/projects/index.html").read_text(encoding="utf-8")
             self.assertIn("C++ / MEMORY · CLOSED PROJECT", project_index)
             self.assertIn("/projects/hstring/", project_index)
+            knowledge_index = (output / "knowledge/programming-knowledge/index.html").read_text(encoding="utf-8")
+            self.assertIn("程序员黑话词典", knowledge_index)
+            self.assertIn("/knowledge/programming-jargon/", knowledge_index)
 
     def test_rejects_duplicate_clean_routes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

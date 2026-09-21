@@ -42,7 +42,7 @@ tracks:
     heading_emphasis: "知识"
     eyebrow: "KNOWLEDGE / PROGRAMMING"
     summary: "记录语言、工具、系统和其他技术主题的概念、方法与学习笔记。"
-    category_lede: "这里会收录语言、工具、系统和其他技术主题的概念与方法。目前先建立分类入口。"
+    category_lede: "这里会收录语言、工具、系统和其他技术主题的概念与方法，先从一组常用的程序员黑话开始。"
     route: "/knowledge/programming-knowledge/"
     action_label: "进入知识分类"
     overview_action: "打开分类"
