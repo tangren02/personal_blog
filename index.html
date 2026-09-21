@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="个人学习网站：从知识、项目和科研记录进入持续复盘的内容地图。" />
+    <title>个人学习图谱 · 首页</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("personal-blog-theme");
+        document.documentElement.dataset.theme = savedTheme === "aurora" ? "aurora" : "sky";
+      } catch (_) { document.documentElement.dataset.theme = "sky"; }
+    </script>
+    <link rel="stylesheet" href="assets/site.css?v=theme-toggle-1" />
+    <script src="assets/theme-switcher.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="返回首页">
+          <span class="brand-mark">∿</span>
+          <span>个人学习图谱</span>
+        </a>
+        <nav class="nav" aria-label="主导航">
+          <a class="active" href="index.html">首页</a>
+          <a href="knowledge/index.html">知识学习</a>
+          <a href="knowledge/projects/index.html">项目记录</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button></nav>
+      </header>
+
+      <main>
+        <section class="hero home-hero">
+          <div class="eyebrow"><span class="pulse"></span> PERSONAL LEARNING / HOME</div>
+          <h1>从这里进入，<br /><em>一张持续生长的学习地图。</em></h1>
+          <p class="lede">这里整理编程知识、学习项目和科研记录。每个入口都指向一条可以回看、复盘和继续补充的内容路径。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="knowledge/index.html">浏览知识学习 <span>↗</span></a>
+            <a class="button ghost" href="#map">查看内容地图 <span>↓</span></a>
+          </div>
+        </section>
+
+        <section class="section" id="map">
+          <div class="section-heading">
+            <div><span class="kicker">CONTENT MAP</span><h2>三条内容路径</h2></div>
+            <p>先按内容性质进入对应分类，再从分类页下方的导航入口打开具体条目。</p>
+          </div>
+          <div class="track-grid track-grid-three">
+            <a class="track-card technical" href="knowledge/programming-knowledge/index.html">
+              <div class="card-top"><span class="number">01</span><span class="tag">KNOWLEDGE</span></div>
+              <h3>编程相关知识</h3>
+              <p>记录语言、工具、系统和其他技术主题的概念、方法与学习笔记。</p>
+              <div class="track-links"><span class="link-label">进入知识分类 <span>↗</span></span><span class="muted">准备中</span></div>
+            </a>
+            <a class="track-card project" href="knowledge/projects/index.html">
+              <div class="card-top"><span class="number">02</span><span class="tag">PROJECTS</span></div>
+              <h3>编程相关项目</h3>
+              <p>以可运行工程为中心，回看源码结构、执行路径、关键取舍和验证结果。</p>
+              <div class="track-links"><span class="link-label">查看项目入口 <span>↗</span></span><span class="muted">1 个条目</span></div>
+            </a>
+            <a class="track-card research" href="knowledge/research/index.html">
+              <div class="card-top"><span class="number">03</span><span class="tag">RESEARCH</span></div>
+              <h3>科研类内容</h3>
+              <p>保留论文、实验、方法、结果和问题边界，形成可追踪的研究记录。</p>
+              <div class="track-links"><span class="link-label">进入科研分类 <span>↗</span></span><span class="muted">准备中</span></div>
+            </a>
+          </div>
+        </section>
+
+        <section class="section home-note">
+          <div class="section-heading">
+            <div><span class="kicker">HOW TO USE</span><h2>从分类页开始深入</h2></div>
+          </div>
+          <div class="note-grid">
+            <div><span class="note-index">01</span><p>首页负责告诉你内容在哪里。</p></div>
+            <div><span class="note-index">02</span><p>分类页负责排列同一方向的导航入口。</p></div>
+            <div><span class="note-index">03</span><p>详情页负责展开事实、路径和复盘。</p></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer"><span>个人学习图谱 · local first</span><span>2026 / <span class="footer-dot">●</span> building the map</span></footer>
+    </div>
+  </body>
+</html>

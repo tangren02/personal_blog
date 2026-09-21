@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>科研类内容 · 个人学习图谱</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("personal-blog-theme");
+        document.documentElement.dataset.theme = savedTheme === "aurora" ? "aurora" : "sky";
+      } catch (_) { document.documentElement.dataset.theme = "sky"; }
+    </script>
+    <link rel="stylesheet" href="../../assets/site.css?v=theme-toggle-1" />
+    <script src="../../assets/theme-switcher.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar"><a class="brand" href="../../index.html" aria-label="返回首页"><span class="brand-mark">∿</span><span>个人学习图谱</span></a><nav class="nav" aria-label="主导航"><a href="../../index.html">首页</a><a class="active" href="../index.html">知识学习</a><a href="../projects/index.html">项目记录</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button></nav></header>
+      <main>
+        <section class="project-hero category-hero"><div class="breadcrumb"><a href="../../index.html">首页</a><span>/</span><a href="../index.html">知识学习</a><span>/</span><span>科研类内容</span></div><div class="eyebrow"><span class="status-dot"></span> RESEARCH / INDEX</div><h1>科研类<br /><span>内容</span></h1><p class="lede">这里会保留论文、实验、方法、结果和问题边界，形成可追踪的研究记录。</p></section>
+        <section class="section empty-section"><div class="empty-mark">···</div><div><span class="kicker">COMING SOON</span><h2>第一个科研条目还在整理中</h2><p>有完整的问题、证据和结论后，它会以独立入口出现在这里。</p></div></section>
+      </main>
+      <footer class="footer"><span><a href="../index.html">← 返回知识学习</a></span><span>科研类内容 · index</span></footer>
+    </div>
+  </body>
+</html>

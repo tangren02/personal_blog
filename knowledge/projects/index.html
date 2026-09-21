@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="编程相关项目的导航入口。" />
+    <title>编程相关项目 · 个人学习图谱</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("personal-blog-theme");
+        document.documentElement.dataset.theme = savedTheme === "aurora" ? "aurora" : "sky";
+      } catch (_) { document.documentElement.dataset.theme = "sky"; }
+    </script>
+    <link rel="stylesheet" href="../../assets/site.css?v=theme-toggle-1" />
+    <script src="../../assets/theme-switcher.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar"><a class="brand" href="../../index.html" aria-label="返回首页"><span class="brand-mark">∿</span><span>个人学习图谱</span></a><nav class="nav" aria-label="主导航"><a href="../../index.html">首页</a><a href="../index.html">知识学习</a><a class="active" href="index.html">项目记录</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button></nav></header>
+      <main>
+        <section class="project-hero category-hero"><div class="breadcrumb"><a href="../../index.html">首页</a><span>/</span><a href="../index.html">知识学习</a><span>/</span><span>编程相关项目</span></div><div class="eyebrow"><span class="pulse"></span> PROJECTS / INDEX</div><h1>编程相关<br /><span>项目</span></h1><p class="lede">每个入口都对应一个可回看的学习项目。先看项目的导航卡，再进入完整的运行模型。</p></section>
+        <section class="section"><div class="section-heading"><div><span class="kicker">PROJECT ENTRIES</span><h2>项目导航</h2></div><p>入口卡沿用 HString 页面验证过的标题与斜线字符串视觉，用来快速识别项目。</p></div>
+          <div class="entry-list">
+            <a class="entry-card" href="../../projects/hstring/index.html"><div class="entry-copy"><span class="entry-kicker">C++ / MEMORY · CLOSED PROJECT</span><h3>hstring：手写字符串类</h3><p>从对象、缓冲区和数据移动开始，追踪构造、拷贝、拼接、查找、删除与替换。</p><span class="read-more">进入项目页面 <span>↗</span></span></div><div class="entry-script" aria-hidden="true"><span>h</span><span>e</span><span>l</span><span>l</span><span>o</span></div></a>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"><span><a href="../index.html">← 返回知识学习</a></span><span>编程相关项目 · index</span></footer>
+    </div>
+  </body>
+</html>

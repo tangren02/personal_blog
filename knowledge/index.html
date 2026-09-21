@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="个人学习图谱的知识学习总览：编程相关知识、编程相关项目和科研类内容。" />
+    <title>知识学习 · 个人学习图谱</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("personal-blog-theme");
+        document.documentElement.dataset.theme = savedTheme === "aurora" ? "aurora" : "sky";
+      } catch (_) { document.documentElement.dataset.theme = "sky"; }
+    </script>
+    <link rel="stylesheet" href="../assets/site.css?v=theme-toggle-1" />
+    <script src="../assets/theme-switcher.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="../index.html" aria-label="返回首页"><span class="brand-mark">∿</span><span>个人学习图谱</span></a>
+        <nav class="nav" aria-label="主导航"><a href="../index.html">首页</a><a class="active" href="index.html">知识学习</a><a href="projects/index.html">项目记录</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button></nav>
+      </header>
+      <main>
+        <section class="project-hero category-hero">
+          <div class="breadcrumb"><a href="../index.html">首页</a><span>/</span><span>知识学习</span></div>
+          <div class="eyebrow"><span class="pulse"></span> KNOWLEDGE / INDEX</div>
+          <h1>知识学习<br /><span>从三个方向进入。</span></h1>
+          <p class="lede">这里是内容总览。选择一个方向后，分类页会在下方列出对应的导航入口。</p>
+        </section>
+        <section class="section">
+          <div class="section-heading"><div><span class="kicker">THREE DIRECTIONS</span><h2>选择一个分类</h2></div><p>分类是入口组织方式，具体内容会随着学习和研究逐步补充。</p></div>
+          <div class="track-grid track-grid-three">
+            <a class="track-card technical" href="programming-knowledge/index.html"><div class="card-top"><span class="number">01</span><span class="tag">KNOWLEDGE</span></div><h3>编程相关知识</h3><p>概念、工具、方法和技术路线的学习记录。</p><div class="track-links"><span class="link-label">打开分类 <span>↗</span></span><span class="muted">准备中</span></div></a>
+            <a class="track-card project" href="projects/index.html"><div class="card-top"><span class="number">02</span><span class="tag">PROJECTS</span></div><h3>编程相关项目</h3><p>从项目事实出发，拆解源码、运行路径和验证结果。</p><div class="track-links"><span class="link-label">打开分类 <span>↗</span></span><span class="muted">1 个条目</span></div></a>
+            <a class="track-card research" href="research/index.html"><div class="card-top"><span class="number">03</span><span class="tag">RESEARCH</span></div><h3>科研类内容</h3><p>论文、实验、方法和结果的研究记录。</p><div class="track-links"><span class="link-label">打开分类 <span>↗</span></span><span class="muted">准备中</span></div></a>
+          </div>
+        </section>
+      </main>
+      <footer class="footer"><span><a href="../index.html">← 返回首页</a></span><span>知识学习 · index</span></footer>
+    </div>
+  </body>
+</html>

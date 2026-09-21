@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>编程相关知识 · 个人学习图谱</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("personal-blog-theme");
+        document.documentElement.dataset.theme = savedTheme === "aurora" ? "aurora" : "sky";
+      } catch (_) { document.documentElement.dataset.theme = "sky"; }
+    </script>
+    <link rel="stylesheet" href="../../assets/site.css?v=theme-toggle-1" />
+    <script src="../../assets/theme-switcher.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar"><a class="brand" href="../../index.html" aria-label="返回首页"><span class="brand-mark">∿</span><span>个人学习图谱</span></a><nav class="nav" aria-label="主导航"><a href="../../index.html">首页</a><a class="active" href="../index.html">知识学习</a><a href="../projects/index.html">项目记录</a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button></nav></header>
+      <main>
+        <section class="project-hero category-hero"><div class="breadcrumb"><a href="../../index.html">首页</a><span>/</span><a href="../index.html">知识学习</a><span>/</span><span>编程相关知识</span></div><div class="eyebrow"><span class="pulse"></span> KNOWLEDGE / PROGRAMMING</div><h1>编程相关<br /><span>知识</span></h1><p class="lede">这里会收录语言、工具、系统和其他技术主题的概念与方法。目前先建立分类入口。</p></section>
+        <section class="section empty-section"><div class="empty-mark">···</div><div><span class="kicker">COMING SOON</span><h2>第一个知识条目还在整理中</h2><p>有明确的学习主题后，它会以独立入口出现在这里。</p></div></section>
+      </main>
+      <footer class="footer"><span><a href="../index.html">← 返回知识学习</a></span><span>编程相关知识 · index</span></footer>
+    </div>
+  </body>
+</html>
