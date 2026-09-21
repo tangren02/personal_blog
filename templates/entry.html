@@ -8,4 +8,7 @@
   <p class="lede">{{ entry.summary }}</p>
 </section>
 <section class="section project-section">{{ body_html | safe }}</section>
+{% if entry.slug == "programming-jargon" %}
+<script src="/assets/jargon-navigation.js" defer></script>
+{% endif %}
 {% endblock %}

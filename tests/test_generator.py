@@ -24,6 +24,10 @@ class GeneratorTests(unittest.TestCase):
             knowledge_index = (output / "knowledge/programming-knowledge/index.html").read_text(encoding="utf-8")
             self.assertIn("程序员黑话词典", knowledge_index)
             self.assertIn("/knowledge/programming-jargon/", knowledge_index)
+            jargon_page = (output / "knowledge/programming-jargon/index.html").read_text(encoding="utf-8")
+            self.assertIn('id="jargon-a"', jargon_page)
+            self.assertIn('href="#jargon-e"', jargon_page)
+            self.assertIn('/assets/jargon-navigation.js', jargon_page)
 
     def test_rejects_duplicate_clean_routes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -20,7 +20,22 @@ card_script: "MVP"
 
 看到一个词时，先把它还原成具体动作或约束，再判断它是不是适合当前场景。同一个词在产品讨论、代码评审和线上故障里可能指向不同的问题；“听起来专业”本身不代表方案正确。
 
-## A. 快速交付黑话
+<nav class="jargon-toc" id="jargon-nav" data-jargon-nav aria-label="词典模块导航">
+  <div class="jargon-toc-head">
+    <span class="kicker">CHAPTERS</span>
+    <strong>本页导航</strong>
+    <span>每个模块 8 个词条</span>
+  </div>
+  <div class="jargon-toc-links">
+    <a href="#jargon-a"><span>A</span><strong>快速交付</strong><small>8 个词条</small></a>
+    <a href="#jargon-b"><span>B</span><strong>需求与产品</strong><small>8 个词条</small></a>
+    <a href="#jargon-c"><span>C</span><strong>代码质量</strong><small>8 个词条</small></a>
+    <a href="#jargon-d"><span>D</span><strong>调试与排障</strong><small>8 个词条</small></a>
+    <a href="#jargon-e"><span>E</span><strong>工程日常</strong><small>8 个词条</small></a>
+  </div>
+</nav>
+
+## A. 快速交付黑话 {#jargon-a}
 
 ### 1. MVP（Minimum Viable Product）
 
@@ -70,7 +85,9 @@ card_script: "MVP"
 - **常见场景**：产品团队观察留存、复用和付费等信号，判断是否值得扩大投入。
 - **边界**：一次爆发式使用或少量好评不能单独证明 PMF；需要可重复、可持续的证据。
 
-## B. 需求与产品黑话
+<p class="jargon-back"><a href="#jargon-nav">↑ 返回本页导航</a></p>
+
+## B. 需求与产品黑话 {#jargon-b}
 
 ### 1. User Story（用户故事）
 
@@ -120,7 +137,9 @@ card_script: "MVP"
 - **常见场景**：团队用“每周完成的有效分析次数”来统一讨论功能取舍。
 - **边界**：指标是方向性工具，不是唯一目标；不能为了好看而牺牲数据质量或用户体验。
 
-## C. 代码质量黑话
+<p class="jargon-back"><a href="#jargon-nav">↑ 返回本页导航</a></p>
+
+## C. 代码质量黑话 {#jargon-c}
 
 ### 1. DRY（Don't Repeat Yourself）
 
@@ -170,7 +189,9 @@ card_script: "MVP"
 - **常见场景**：审查者已经检查了范围、逻辑和验证结果，在合并前留下简短结论。
 - **边界**：LGTM 不是“证明没有问题”；审查意见应该说明检查了什么，验证缺口也要留下记录。
 
-## D. 调试与排障黑话
+<p class="jargon-back"><a href="#jargon-nav">↑ 返回本页导航</a></p>
+
+## D. 调试与排障黑话 {#jargon-d}
 
 ### 1. Minimal Reproduction（最小复现）
 
@@ -220,7 +241,9 @@ card_script: "MVP"
 - **常见场景**：依赖时间、线程调度、网络或共享状态，导致测试偶发失败。
 - **边界**：不能把失败简单重跑到通过；应找到不稳定来源，否则它会掩盖真正的回归。
 
-## E. 工程日常黑话
+<p class="jargon-back"><a href="#jargon-nav">↑ 返回本页导航</a></p>
+
+## E. 工程日常黑话 {#jargon-e}
 
 ### 1. CRUD（Create, Read, Update, Delete）
 
@@ -269,6 +292,8 @@ card_script: "MVP"
 - **白话**：根据新规则或新字段，为历史数据补齐缺失内容。
 - **常见场景**：新增 `created_at` 字段后，为旧记录计算并写入时间值。
 - **边界**：回填要考虑批量大小、可重复执行、错误恢复和对线上读写的影响。
+
+<p class="jargon-back"><a href="#jargon-nav">↑ 返回本页导航</a></p>
 
 ## 记住这件事
 
