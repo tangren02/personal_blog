@@ -63,7 +63,7 @@ Python Tutor **适合成为本项目的辅助运行验证器和交互入口**，
 
 ### 第一阶段：只加外部链接
 
-在 `projects/hstring/index.html` 的每个关键 trace step 旁边增加“在 Python Tutor 中逐步执行”链接，链接只包含一个经过删减的、单文件的 C++ 示例。链接生成规则固定为：
+在生成后的 `projects/hstring/` 页面每个关键 trace step 旁边增加“在 Python Tutor 中逐步执行”链接，链接只包含一个经过删减的、单文件的 C++ 示例。链接生成规则固定为：
 
 ```text
 https://pythontutor.com/visualize.html?via=site#code=<URL编码后的源码>&mode=display&py=cpp

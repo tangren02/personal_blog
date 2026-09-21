@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="project-hero">
+  <div class="breadcrumb"><a href="/">首页</a><span>/</span><span>{{ entry.title }}</span></div>
+  <div class="eyebrow"><span class="pulse"></span> {{ entry.kind | upper }} / GENERATED</div>
+  <h1>{{ entry.title }}</h1>
+  <p class="lede">{{ entry.summary }}</p>
+</section>
+<section class="section project-section">{{ body_html | safe }}</section>
+{% endblock %}
