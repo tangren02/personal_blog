@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="project-hero category-hero">
+  <div class="breadcrumb"><a href="/">首页</a><span>/</span><span>知识学习</span></div>
+  <div class="eyebrow"><span class="pulse"></span> {{ overview.eyebrow }}</div>
+  <h1>{{ overview.title_lead }}<br /><span>{{ overview.title_emphasis }}</span></h1>
+  <p class="lede">{{ overview.lede }}</p>
+</section>
+<section class="section">
+  <div class="section-heading"><div><span class="kicker">{{ overview.section_kicker }}</span><h2>{{ overview.section_heading }}</h2></div><p>{{ overview.section_description }}</p></div>
+  <div class="track-grid track-grid-three">
+    {% for track in tracks %}{% include "partials/track_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero home-hero">
+  <div class="eyebrow"><span class="pulse"></span> {{ home.eyebrow }}</div>
+  <h1>{{ home.title_lead }}<br /><em>{{ home.title_emphasis }}</em></h1>
+  <p class="lede">{{ home.lede }}</p>
+  <div class="hero-actions">
+    <a class="button primary" href="{{ home.primary_route }}">{{ home.primary_label }} <span>↗</span></a>
+    <a class="button ghost" href="#map">{{ home.secondary_label }} <span>↓</span></a>
+  </div>
+</section>
+
+<section class="section" id="map">
+  <div class="section-heading">
+    <div><span class="kicker">{{ home.map_kicker }}</span><h2>{{ home.map_heading }}</h2></div>
+    <p>{{ home.map_description }}</p>
+  </div>
+  <div class="track-grid track-grid-three">
+    {% for track in tracks %}{% include "partials/track_card.html" %}{% endfor %}
+  </div>
+</section>
+
+<section class="section home-note">
+  <div class="section-heading"><div><span class="kicker">{{ home.note_kicker }}</span><h2>{{ home.note_heading }}</h2></div></div>
+  <div class="note-grid">
+    {% for note in home.notes %}<div><span class="note-index">{{ "%02d" | format(loop.index) }}</span><p>{{ note }}</p></div>{% endfor %}
+  </div>
+</section>
+{% endblock %}

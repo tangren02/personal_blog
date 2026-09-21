@@ -1,0 +1,83 @@
+site:
+  name: "个人学习图谱"
+  description: "个人学习网站：从知识、项目和科研记录进入持续复盘的内容地图。"
+  year: "2026"
+  footer_status: "building the map"
+
+home:
+  eyebrow: "PERSONAL LEARNING / HOME"
+  title_lead: "从这里进入，"
+  title_emphasis: "一张持续生长的学习地图。"
+  lede: "这里整理编程知识、学习项目和科研记录。每个入口都指向一条可以回看、复盘和继续补充的内容路径。"
+  primary_label: "浏览知识学习"
+  primary_route: "/knowledge/"
+  secondary_label: "查看内容地图"
+  map_heading: "三条内容路径"
+  map_kicker: "CONTENT MAP"
+  map_description: "先按内容性质进入对应分类，再从分类页下方的导航入口打开具体条目。"
+  note_kicker: "HOW TO USE"
+  note_heading: "从分类页开始深入"
+  notes:
+    - "首页负责告诉你内容在哪里。"
+    - "分类页负责排列同一方向的导航入口。"
+    - "详情页负责展开事实、路径和复盘。"
+
+knowledge_index:
+  title_lead: "知识学习"
+  title_emphasis: "从三个方向进入。"
+  eyebrow: "KNOWLEDGE / INDEX"
+  lede: "这里是内容总览。选择一个方向后，分类页会在下方列出对应的导航入口。"
+  section_kicker: "THREE DIRECTIONS"
+  section_heading: "选择一个分类"
+  section_description: "分类是入口组织方式，具体内容会随着学习和研究逐步补充。"
+
+tracks:
+  - id: programming-knowledge
+    number: "01"
+    theme: technical
+    tag: KNOWLEDGE
+    kind: knowledge
+    title: "编程相关知识"
+    heading_lead: "编程相关"
+    heading_emphasis: "知识"
+    eyebrow: "KNOWLEDGE / PROGRAMMING"
+    summary: "记录语言、工具、系统和其他技术主题的概念、方法与学习笔记。"
+    category_lede: "这里会收录语言、工具、系统和其他技术主题的概念与方法。目前先建立分类入口。"
+    route: "/knowledge/programming-knowledge/"
+    action_label: "进入知识分类"
+    overview_action: "打开分类"
+    empty_title: "第一个知识条目还在整理中"
+    empty_description: "有明确的学习主题后，它会以独立入口出现在这里。"
+  - id: projects
+    number: "02"
+    theme: project
+    tag: PROJECTS
+    kind: project
+    title: "编程相关项目"
+    heading_lead: "编程相关"
+    heading_emphasis: "项目"
+    eyebrow: "PROJECTS / INDEX"
+    summary: "以可运行工程为中心，回看源码结构、执行路径、关键取舍和验证结果。"
+    category_lede: "每个入口都对应一个可回看的学习项目。先看项目的导航卡，再进入完整的运行模型。"
+    route: "/knowledge/projects/"
+    action_label: "查看项目入口"
+    overview_action: "打开分类"
+    section_kicker: "PROJECT ENTRIES"
+    section_heading: "项目导航"
+    section_description: "入口卡沿用 HString 页面验证过的标题与斜线字符串视觉，用来快速识别项目。"
+  - id: research
+    number: "03"
+    theme: research
+    tag: RESEARCH
+    kind: research
+    title: "科研类内容"
+    heading_lead: "科研类"
+    heading_emphasis: "内容"
+    eyebrow: "RESEARCH / INDEX"
+    summary: "保留论文、实验、方法、结果和问题边界，形成可追踪的研究记录。"
+    category_lede: "这里会保留论文、实验、方法、结果和问题边界，形成可追踪的研究记录。"
+    route: "/knowledge/research/"
+    action_label: "进入科研分类"
+    overview_action: "打开分类"
+    empty_title: "第一个科研条目还在整理中"
+    empty_description: "有完整的问题、证据和结论后，它会以独立入口出现在这里。"

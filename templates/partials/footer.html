@@ -1,0 +1,4 @@
+<footer class="footer">
+  <span>{% if page.get('footer_route') %}<a href="{{ page.footer_route }}">{{ page.footer_label }}</a>{% else %}{{ site.name }} · local first{% endif %}</span>
+  <span>{% if page.get('footer_right') %}{{ page.footer_right }}{% else %}{{ site.year }} / <span class="footer-dot">●</span> {{ site.footer_status }}{% endif %}</span>
+</footer>

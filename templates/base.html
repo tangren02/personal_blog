@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{{ entry.summary }}" />
-    <title>{{ entry.title }} · 个人学习图谱</title>
+    <meta name="description" content="{{ page.description }}" />
+    <title>{{ page.get('title_tag', page.title ~ ' · ' ~ site.name) }}</title>
     <script>
       try {
         const savedTheme = localStorage.getItem("personal-blog-theme");
@@ -14,21 +14,13 @@
     <link rel="stylesheet" href="/assets/site.css?v=theme-toggle-1" />
     <script src="/assets/theme-switcher.js" defer></script>
   </head>
-  <body class="project-page">
+  <body class="{{ page.body_class or '' }}">
     <div class="shell">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="返回首页"><span class="brand-mark">∿</span><span>个人学习图谱</span></a>
-        <nav class="nav" aria-label="主导航">
-          <a href="/">首页</a>
-          <a href="/knowledge/">知识学习</a>
-          <a class="active" href="/knowledge/projects/">项目记录</a>
-          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button>
-        </nav>
-      </header>
+      {% include "partials/header.html" %}
       <main>
         {% block content %}{% endblock %}
       </main>
-      <footer class="footer"><span><a href="/knowledge/projects/">← 返回项目记录</a></span><span>{{ entry.slug }} · generated</span></footer>
+      {% include "partials/footer.html" %}
     </div>
   </body>
 </html>

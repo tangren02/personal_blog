@@ -1,0 +1,9 @@
+<a class="entry-card" href="{{ entry.route }}">
+  <div class="entry-copy">
+    <span class="entry-kicker">{{ entry.metadata.card_kicker or (entry.metadata.kind | upper ~ " / " ~ entry.metadata.status | upper) }}</span>
+    <h3>{{ entry.metadata.title }}</h3>
+    <p>{{ entry.metadata.summary }}</p>
+    <span class="read-more">进入项目页面 <span>↗</span></span>
+  </div>
+  <div class="entry-script" aria-hidden="true">{% for character in (entry.metadata.card_script or entry.metadata.slug[:5]) %}<span>{{ character }}</span>{% endfor %}</div>
+</a>

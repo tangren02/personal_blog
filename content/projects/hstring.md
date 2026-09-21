@@ -9,6 +9,8 @@ order: 1
 tags:
   - C++
   - memory
+card_kicker: "C++ / MEMORY · CLOSED PROJECT"
+card_script: "hello"
 source: "https://github.com/tangren02/hstring/tree/015d0bdcd7d6659400883a099f8ba568d751623e"
 ---
 

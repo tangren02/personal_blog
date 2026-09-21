@@ -1,0 +1,9 @@
+<header class="topbar">
+  <a class="brand" href="/" aria-label="返回首页"><span class="brand-mark">∿</span><span>{{ site.name }}</span></a>
+  <nav class="nav" aria-label="主导航">
+    <a{% if page.active_nav == 'home' %} class="active"{% endif %} href="/">首页</a>
+    <a{% if page.active_nav == 'knowledge' %} class="active"{% endif %} href="/knowledge/">知识学习</a>
+    <a{% if page.active_nav == 'projects' %} class="active"{% endif %} href="/knowledge/projects/">项目记录</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false"><span class="theme-toggle-glyph" data-theme-glyph>◐</span><span class="theme-toggle-label" data-theme-label>暗色</span></button>
+  </nav>
+</header>

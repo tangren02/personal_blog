@@ -14,6 +14,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT_DIR = ROOT / "content"
+SITE_CONFIG = CONTENT_DIR / "site.yaml"
 TEMPLATES_DIR = ROOT / "templates"
 ASSETS_DIR = ROOT / "assets"
 DIST_DIR = ROOT / "dist"
@@ -22,13 +23,6 @@ REQUIRED_FIELDS = ("kind", "status", "title", "slug", "summary", "updated", "ord
 ALLOWED_KINDS = {"project", "knowledge", "research"}
 ALLOWED_STATUSES = {"preparing", "active", "completed"}
 KIND_PATHS = {"project": "projects", "knowledge": "knowledge", "research": "research"}
-LEGACY_PAGES = (
-    "index.html",
-    "knowledge/index.html",
-    "knowledge/programming-knowledge/index.html",
-    "knowledge/projects/index.html",
-    "knowledge/research/index.html",
-)
 
 
 class BuildError(RuntimeError):
@@ -94,6 +88,9 @@ def _validate_metadata(path: Path, metadata: dict) -> None:
         raise BuildError(f"{path}: title must be a non-empty string")
     if not isinstance(metadata["summary"], str) or not metadata["summary"].strip():
         raise BuildError(f"{path}: summary must be a non-empty string")
+    for field in ("card_kicker", "card_script"):
+        if field in metadata and not isinstance(metadata[field], str):
+            raise BuildError(f"{path}: {field} must be a string")
 
 
 class ContentHTMLPolicy(HTMLParser):
@@ -135,6 +132,45 @@ def _load_entries() -> list[Entry]:
     return sorted(entries, key=lambda item: (item.metadata["kind"], item.metadata["order"], item.metadata["title"]))
 
 
+def _load_site_config() -> dict:
+    if not SITE_CONFIG.exists():
+        raise BuildError(f"site config is missing: {SITE_CONFIG}")
+    try:
+        config = yaml.safe_load(SITE_CONFIG.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError as exc:
+        raise BuildError(f"{SITE_CONFIG}: invalid YAML ({exc})") from exc
+    if not isinstance(config, dict) or not isinstance(config.get("site"), dict):
+        raise BuildError(f"{SITE_CONFIG}: site must be a mapping")
+    tracks = config.get("tracks")
+    if not isinstance(tracks, list) or not tracks:
+        raise BuildError(f"{SITE_CONFIG}: tracks must be a non-empty list")
+    required = {"id", "kind", "title", "route", "theme", "number", "tag"}
+    seen_ids: set[str] = set()
+    seen_kinds: set[str] = set()
+    seen_routes: set[str] = set()
+    for track in tracks:
+        if not isinstance(track, dict) or not required.issubset(track):
+            raise BuildError(f"{SITE_CONFIG}: each track needs {sorted(required)}")
+        if track["id"] in seen_ids:
+            raise BuildError(f"{SITE_CONFIG}: duplicate track id {track['id']}")
+        if track["route"] in seen_routes:
+            raise BuildError(f"{SITE_CONFIG}: duplicate track route {track['route']}")
+        if track["kind"] not in ALLOWED_KINDS:
+            raise BuildError(f"{SITE_CONFIG}: track kind must be one of {sorted(ALLOWED_KINDS)}")
+        if track["kind"] in seen_kinds:
+            raise BuildError(f"{SITE_CONFIG}: duplicate track kind {track['kind']}")
+        seen_ids.add(track["id"])
+        seen_kinds.add(track["kind"])
+        seen_routes.add(track["route"])
+    missing_kinds = ALLOWED_KINDS - seen_kinds
+    if missing_kinds:
+        raise BuildError(f"{SITE_CONFIG}: missing track kind(s): {sorted(missing_kinds)}")
+    for key in ("home", "knowledge_index"):
+        if not isinstance(config.get(key), dict):
+            raise BuildError(f"{SITE_CONFIG}: {key} must be a mapping")
+    return config
+
+
 def _environment() -> Environment:
     return Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
@@ -143,7 +179,7 @@ def _environment() -> Environment:
     )
 
 
-def _render_entry(environment: Environment, entry: Entry) -> str:
+def _render_entry(environment: Environment, entry: Entry, site: dict) -> str:
     body_html = markdown.markdown(
         entry.body,
         extensions=["fenced_code", "tables", "attr_list"],
@@ -151,24 +187,81 @@ def _render_entry(environment: Environment, entry: Entry) -> str:
     )
     template_name = "project.html" if entry.metadata["kind"] == "project" else "entry.html"
     template = environment.get_template(template_name)
+    page = {
+        "title": entry.metadata["title"],
+        "title_tag": entry.metadata["title"],
+        "description": entry.metadata["summary"],
+        "active_nav": "projects" if entry.metadata["kind"] == "project" else "knowledge",
+        "body_class": "project-page" if entry.metadata["kind"] == "project" else "entry-page",
+        "footer_route": "/knowledge/projects/" if entry.metadata["kind"] == "project" else "/knowledge/",
+        "footer_label": "← 返回项目记录" if entry.metadata["kind"] == "project" else "← 返回知识学习",
+        "footer_right": f"{entry.metadata['slug']} · generated",
+    }
     return template.render(
-        site={"name": "个人学习图谱"},
+        site=site,
+        page=page,
         entry=entry.metadata,
         body_html=body_html,
     )
 
 
-def _copy_legacy_pages() -> None:
-    for relative in LEGACY_PAGES:
-        source = ROOT / relative
-        if not source.exists():
-            raise BuildError(f"legacy page is missing: {source}")
-        destination = DIST_DIR / relative
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, destination)
+def _decorate_tracks(config: dict, entries: list[Entry]) -> list[dict]:
+    tracks = []
+    for raw_track in config["tracks"]:
+        track = dict(raw_track)
+        track["entries"] = [entry for entry in entries if entry.metadata["kind"] == track["kind"]]
+        track["count_label"] = f"{len(track['entries'])} 个条目" if track["entries"] else "准备中"
+        tracks.append(track)
+    return tracks
+
+
+def _write_route(route: str, html: str) -> None:
+    output = DIST_DIR / route.strip("/") / "index.html"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(html, encoding="utf-8")
+
+
+def _render_site_pages(environment: Environment, config: dict, entries: list[Entry]) -> None:
+    site = config["site"]
+    tracks = _decorate_tracks(config, entries)
+    home_page = {
+        "title": "首页",
+        "title_tag": f"{site['name']} · 首页",
+        "description": site["description"],
+        "active_nav": "home",
+        "body_class": "home-page",
+    }
+    _write_route("/", environment.get_template("home.html").render(site=site, page=home_page, home=config["home"], tracks=tracks, action_context="home"))
+
+    overview = config["knowledge_index"]
+    overview_page = {
+        "title": "知识学习",
+        "title_tag": f"知识学习 · {site['name']}",
+        "description": site["description"],
+        "active_nav": "knowledge",
+        "body_class": "category-page",
+        "footer_route": "/",
+        "footer_label": "← 返回首页",
+        "footer_right": "知识学习 · index",
+    }
+    _write_route("/knowledge/", environment.get_template("knowledge_index.html").render(site=site, page=overview_page, overview=overview, tracks=tracks, action_context="overview"))
+
+    for track in tracks:
+        page = {
+            "title": track["title"],
+            "title_tag": f"{track['title']} · {site['name']}",
+            "description": track["category_lede"],
+            "active_nav": "projects" if track["kind"] == "project" else "knowledge",
+            "body_class": "category-page",
+            "footer_route": "/knowledge/",
+            "footer_label": "← 返回知识学习",
+            "footer_right": f"{track['title']} · index",
+        }
+        _write_route(track["route"], environment.get_template("category.html").render(site=site, page=page, track=track))
 
 
 def build_site() -> BuildResult:
+    config = _load_site_config()
     entries = _load_entries()
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     for child in DIST_DIR.iterdir():
@@ -177,13 +270,13 @@ def build_site() -> BuildResult:
         else:
             child.unlink()
     shutil.copytree(ASSETS_DIR, DIST_DIR / "assets")
-    _copy_legacy_pages()
 
     environment = _environment()
+    _render_site_pages(environment, config, entries)
     for entry in entries:
         output = entry.output_path
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(_render_entry(environment, entry), encoding="utf-8")
+        output.write_text(_render_entry(environment, entry, config["site"]), encoding="utf-8")
     return BuildResult(DIST_DIR, len(entries))
 
 

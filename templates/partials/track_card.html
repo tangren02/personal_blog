@@ -1,0 +1,6 @@
+<a class="track-card {{ track.theme }}" href="{{ track.route }}">
+  <div class="card-top"><span class="number">{{ track.number }}</span><span class="tag">{{ track.tag }}</span></div>
+  <h3>{{ track.title }}</h3>
+  <p>{{ track.summary }}</p>
+  <div class="track-links"><span class="link-label">{{ track.action_label if action_context == 'home' else track.overview_action }} <span>↗</span></span><span class="muted">{{ track.count_label }}</span></div>
+</a>
